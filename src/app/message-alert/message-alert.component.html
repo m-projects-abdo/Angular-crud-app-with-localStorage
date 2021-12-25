@@ -1,0 +1,16 @@
+<div
+  *ngIf="status; else success"
+  class="message_faild"
+  [class] = "status ? 'error' : 'success' "
+>
+  <h5>{{ getContent() }}</h5>
+</div>
+
+<ng-template #success>
+  <div
+    class="message_faild"
+    [class] = "status ? 'error' : 'success' "
+  >
+    <h5>{{ getContent() }}</h5>
+  </div>
+</ng-template>

@@ -1,0 +1,13 @@
+.test-app {
+  overflow: hidden;
+}
+input {
+  border: 1px solid darkgray;
+  outline: none;
+  padding: 9px 10px;
+  background: #eee;
+  border-radius: 10px;
+  color: gray;
+  margin-top: 23px;
+  margin-left: 10px;
+}

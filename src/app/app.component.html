@@ -1,0 +1,45 @@
+<app-header></app-header>
+<div class="test-app">
+  <div class="d-flex row">
+    <div class="col-2">
+      <input
+        placeholder="Press Enter to save."
+        type="text"
+        (keyup.enter)="addTOList()"
+        [(ngModel)]="inputModel"
+      >
+    </div>
+
+    <div class="col-2">
+      <div>
+        <button
+          style="margin-right: 5px;"
+          class="btn btn-dark p-2 mt-4 mr-2"
+          (click)="addTOList()"
+          [disabled]="hasError()"
+        >Add</button>
+        <button
+          style="margin-right: 5px;"
+          class="btn btn-primary p-2 mt-4"
+          (click)="clearInput()"
+          [disabled]="hasError()"
+        >Clear</button>
+        <button
+          class="btn btn-danger p-2 mt-4 ml-4"
+          (click)="clearList()"
+          [disabled]="listIsEmpty()"
+        >Delete all</button>
+      </div>
+    </div>
+  </div>
+
+  <app-itemsList
+    (itemUpdated)="setItemToUpdate($event)"
+    [listOfItems]="items"
+  ></app-itemsList>
+
+  <app-message-alert
+    [status]="hasError()"
+  ></app-message-alert>
+</div>
+
