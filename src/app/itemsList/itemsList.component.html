@@ -1,21 +1,26 @@
-<div class="list-of-items" *ngFor="let item of listOfItems; let id = index">
-  <p class="mb-1 input-title">
-    <span class="text text-dark">
-        {{ item.date }}
-    </span> | {{item.name}}
-    <span
-      (click)="updateItem(id)"
-      style="margin-left: 20px;cursor: pointer"
-      class="text text-success"
-    >
-      <i class='bx bxs-edit-alt'></i>
-    </span>
-    <span
-      (click)="deleteItem(id)"
-      style="margin-left: 5px;cursor: pointer;"
-      class="text text-danger"
-    >
-      <i class='bx bxs-message-square-x h5'></i>
-    </span>
-  </p>
-</div>
+<a
+  *ngFor="let item of listOfItems; let id = index"
+  [routerLink]="['item', id]"
+>
+  <div class="list-of-items">
+    <p class="mb-1 input-title" appItemStyle>
+      <span class="text text-dark">
+          {{ item.date }}
+      </span> | {{item.name}}
+      <span
+        (click)="updateItem(id)"
+        style="margin-left: 20px;cursor: pointer"
+        class="text text-success"
+      >
+        <i class='bx bxs-edit-alt'></i>
+      </span>
+      <span
+        (click)="deleteItem(id)"
+        style="margin-left: 5px;cursor: pointer;"
+        class="text text-danger"
+      >
+        <i class='bx bxs-message-square-x h5'></i>
+      </span>
+    </p>
+  </div>
+</a>

@@ -6,7 +6,7 @@ import {
   EventEmitter
 } from '@angular/core';
 
-import { LocalStorage } from '../services/localStorage.service';
+import { IStorage } from '../services/IStorage.interface';
 
 @Component({
   selector: 'app-itemsList',
@@ -14,25 +14,19 @@ import { LocalStorage } from '../services/localStorage.service';
   styleUrls: ['./itemsList.component.css']
 })
 
-export class ItemsListComponent extends LocalStorage implements OnInit {
-  readonly localDataName: String = 'localData';
-  currentItem!: {
-    name: string;
-    date: number;
-  };
+export class ItemsListComponent implements OnInit {
+  currentItem!: IStorage;
 
   @Input() listOfItems: any[] = [];
   @Output() itemUpdated: EventEmitter<string> = new EventEmitter();
 
   constructor() {
-    super();
   }
 
   ngOnInit(): void { }
 
   deleteItem(id: number): void {
     this.listOfItems.splice(id, 1);
-    this.setToLocal(this.localDataName, this.listOfItems);
   }
 
   updateItem(id: number): void {

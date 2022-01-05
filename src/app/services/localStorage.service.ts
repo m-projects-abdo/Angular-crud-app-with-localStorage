@@ -1,33 +1,41 @@
 import { IStorage } from './IStorage.interface';
+import { Injectable } from '@angular/core';
 
+@Injectable({providedIn: 'root'})
 export class LocalStorage {
-  private localDataItems!: Array<Object>;
-
   constructor() {}
 
-  setToLocal(
-    localDataName: String,
-    localDataVlue: (IStorage | Array<Object>)
-  ): void {
-    localStorage.setItem(`${localDataName}`, JSON.stringify(localDataVlue));
+  protected setToLocal(localDataName: string, localDataVlue: IStorage[]): void {
+    localStorage.setItem(localDataName, JSON.stringify(localDataVlue));
   }
 
-  getFromLocal(localDataName: String): Array<Object> {
-    return this.checkLocalData(localDataName) ?
-      JSON.parse(localStorage.getItem(`${localDataName}`)!) : [];
+  protected getFromLocal(localDataName: string): IStorage[] {
+    if(this.checkLocalData(localDataName)) return [];
+    return JSON.parse(localStorage.getItem(localDataName)!)
   }
 
-  clearLocal(): void {
+  protected getInfoFromLocal(localDataName: string, id: number): object {
+    let localStorageData = this.getFromLocal(localDataName);
+    let item = localStorageData.find((item,index) => index == id)
+
+    return item || {};
+  }
+
+  protected clearLocalAll(): void {
     localStorage.clear();
   }
 
-  deleteItemFromLocal(localDataName: String, itemIndex: Number) {}
+  protected clearLocalData(localDataName: string): void {
+    localStorage.removeItem(localDataName);
+  }
 
-  updateDataFromLocal(localDataName: String): void {}
+  protected deleteItemFromLocal(localDataName: String, itemIndex: Number): void {}
 
-  checkLocalData(localDataName: String): boolean {
-    return localStorage.getItem(`${localDataName}`)
-      ? true
-      : false;
+  protected updateDataFromLocal(localDataName: String): void {}
+
+  protected checkLocalData(localDataName: string): boolean {
+    return localStorage.getItem(localDataName)
+      ? false
+      : true;
   }
 }

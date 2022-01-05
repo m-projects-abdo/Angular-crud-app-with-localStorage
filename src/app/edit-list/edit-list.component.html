@@ -1,0 +1,45 @@
+<section class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow-sm p-4">
+        <h5 class="text text-dark pb-2">Create new item : </h5>
+        <input
+          type="text"
+          (keyup.enter)="createItem()"
+          [(ngModel)]="itemName"
+          class="input-title mb-2"
+          placeholder="Item title"
+        >
+        <!-- after final edit -->
+        <!-- <input
+          type="text"
+          class="input-title mb-2"
+          placeholder="Item Content"
+        > -->
+        <div class="d-flex">
+          <button
+            (click)="createItem()"
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="!itemName"
+          >Create</button>
+          <span class="p-1"></span>
+          <button
+            (click)="itemName=''"
+            [disabled]="!itemName"
+            class="btn btn-danger"
+            type="submit"
+          >Clear</button>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card shadow-sm p-4">
+        <p>Disable Item Image.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<app-message-alert [status]="!itemName"></app-message-alert>
